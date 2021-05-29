@@ -87,7 +87,15 @@ POST http://localhost:8082/order
 ### Tests
 ```
 ./vendor/codeception/codeception/codecept run tests/unit
+
+✔ BasicObjectTest: Create ok (0.01s)
+✔ BasicObjectTest: Create ko (0.00s)
+✔ NameTest: Create ok (0.00s)
+✔ NameTest: Create ko (0.00s)
+✔ PriceTest: Create ok (0.00s)
+✔ PriceTest: Create ko (0.00s)
 ```
+
 
 
 

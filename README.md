@@ -1,7 +1,7 @@
 # Installation steps
 
 ```
-* docker-compose -f YOUR_PATH/softonic-api/deploy/docker-compose.yml up -d
+* docker-compose -f YOUR_PATH/deploy/docker-compose.yml up -d
 
 * Enter in you docker container (api_rest_php) with bash and execute:
 cd /usr/local/apache2/htdocs/api-rest
@@ -40,7 +40,8 @@ POST http://localhost:8082/order
 }
 ```
 
-POST http://localhost:8082/order/product/add
+POST http://localhost:8082/order/{orderId}/product/{productId}
+POST http://localhost:8082/order/3/product/7
 ```
 {
     "status": 200,
@@ -60,6 +61,7 @@ POST http://localhost:8082/order/product/add
 ```
 
 GET http://localhost:8082/order/{orderID}
+GET http://localhost:8082/order/3
 ```
 {
     "status": 200,
@@ -79,18 +81,13 @@ GET http://localhost:8082/order/{orderID}
 ```
 
 ### Quality code tools installed
-* phpmd/phpmd all basic rules, except naming rule ($id)
 * squizlabs/php_codesniffer with PSR2
+* phpmd/phpmd all basic rules, except naming rule ($id)
 
 ### Tests
 ```
 ./vendor/codeception/codeception/codecept run tests/unit
-``` 
-
-### Documentation:
-
-http://localhost:8082/api/doc
- 
+```
 
 
 

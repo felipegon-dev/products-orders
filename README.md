@@ -40,8 +40,8 @@ POST http://localhost:8082/order
 }
 ```
 
-POST http://localhost:8082/order/{orderId}/product/{productId}
-POST http://localhost:8082/order/3/product/7
+* POST http://localhost:8082/order/{orderId}/product/{productId}
+* POST http://localhost:8082/order/3/product/7
 ```
 {
     "status": 200,
@@ -60,8 +60,8 @@ POST http://localhost:8082/order/3/product/7
 }
 ```
 
-GET http://localhost:8082/order/{orderID}
-GET http://localhost:8082/order/3
+* GET http://localhost:8082/order/{orderID}
+* GET http://localhost:8082/order/3
 ```
 {
     "status": 200,

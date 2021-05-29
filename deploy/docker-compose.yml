@@ -1,0 +1,58 @@
+version: '3.2'
+services:
+    api_rest_http:
+        container_name: api_rest_http
+        build:
+            context: ./
+            dockerfile: config/http.Dockerfile
+        volumes:
+            - ../api-rest:/usr/local/apache2/htdocs/api-rest
+        ports:
+            - "8082:80"
+            - "4431:443"
+        links:
+            - api_rest_php
+        networks:
+            mylan:
+                ipv4_address: 172.100.0.11
+
+    api_rest_php:
+        container_name: api_rest_php
+        build:
+            context: ./
+            args:
+                - DISPLAY_PHP_ERRORS=true
+            dockerfile: config/php.Dockerfile
+        volumes:
+            - ../api-rest:/usr/local/apache2/htdocs/api-rest
+        links:
+            - api_rest_database
+        environment:
+            DB_PORT: 5432
+            DB_HOST: database
+        networks:
+            mylan:
+                ipv4_address: 172.100.0.10
+
+
+
+    api_rest_database:
+        container_name: api_rest_db
+        image: postgres:9.6.4
+        environment:
+            POSTGRES_PASSWORD: api_rest
+            POSTGRES_DB: api_rest
+        ports:
+            - "54321:5432"
+        volumes:
+            - ./api_rest_postgresql-volume:/var/lib/postgresql/data
+        networks:
+            mylan:
+                ipv4_address: 172.100.0.9
+
+networks:
+    mylan:
+        attachable: true
+        ipam:
+            config:
+                - subnet: 172.100.0.0/24
